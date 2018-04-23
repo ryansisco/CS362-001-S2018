@@ -17,32 +17,29 @@ import java.util.LinkedList;
 public class DataHandlerTest{
 
 	@Test(timeout = 4000)
-	public void test00()  throws Throwable  {
-		GregorianCalendar first = new GregorianCalendar(2017, 5, 8);
-		GregorianCalendar last = new GregorianCalendar();
-		DataHandler data0 = new DataHandler();
-		data0.save();
-	}
-	@Test(timeout = 4000)
-	public void test01()  throws Throwable  {
+	public void test00()  throws Throwable  { //fine appointment info
 		Appt appty = new Appt(999999999,999999999,999999999,999999999,999999999,"test", "tesssst", "test@test.net");
 		DataHandler data0 = new DataHandler();
-		data0.saveAppt(appty);
-		data0.deleteAppt(appty);
+		assertEquals(false, data0.deleteAppt(appty));
+		assertEquals(true, data0.save());
+		assertEquals(true, data0.saveAppt(appty));
 	}
-	@Test(timeout = 4000)
-	public void test02()  throws Throwable  {
+	@Test(timeout = 4000) //bad appointment info
+	public void test01()  throws Throwable  {
 		Appt appty = new Appt(-999999999,-5,5,9,5,"test", "tesssst", "test@test.net");
 		DataHandler data0 = new DataHandler("\"test\n\n\n");
-		data0.saveAppt(appty);
-		data0.deleteAppt(appty);
+		assertEquals(false, data0.deleteAppt(appty));
+		assertEquals(false, data0.save());
+		assertEquals(false, data0.saveAppt(appty));
 	}
 		
-	@Test(timeout = 4000)
-	public void test03()  throws Throwable  {
+	@Test(timeout = 4000) //bad appointment info
+	public void test02()  throws Throwable  {
 		Appt appty = new Appt(5,-5,5,5,1003,"test", "tesssst", "test@test.net");
 		DataHandler data0 = new DataHandler("test\n", false);
-		data0.saveAppt(appty);
-		data0.deleteAppt(appty);
+		assertEquals(false, data0.deleteAppt(appty));
+		assertEquals(false, data0.save());
+		assertEquals(false, data0.saveAppt(appty));
+
 	}
 }
