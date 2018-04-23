@@ -16,10 +16,10 @@ public class CalDayTest{
 	@Test(timeout = 4000)
 	public void test00()  throws Throwable  {
 		GregorianCalendar calendar = new GregorianCalendar();
-		Appt appty = new Appt(5,5,5,5,5,"test", "tesssst", "test@test.net");
+		Appt appty = new Appt(5,5,5,5,5,"test", "te\n\n\nsssst", "test@test.net\n");
 		CalDay day0 = new CalDay();
 		day0.toString();
-		// day0.addAppt(appty);
+		//day0.addAppt(appty);
 		day0.getDay();
 		day0.getMonth();
 		day0.getYear();
@@ -27,7 +27,7 @@ public class CalDayTest{
 	}
 	@Test(timeout = 4000)
 	public void test01()  throws Throwable  {
-		GregorianCalendar calendar = new GregorianCalendar(-1300, -80, -60);
+		GregorianCalendar calendar = new GregorianCalendar(999999999, -80, -60);
 		CalDay day0 = new CalDay();
 		day0.toString();
 		day0.getAppts();

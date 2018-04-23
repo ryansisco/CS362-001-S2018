@@ -167,12 +167,12 @@ public class Appt{
      */
 	public void setValid() {
 
-		if (startMonth < 1 && startMonth > 12) //BUG, changed '||' to '&&'
-			this.valid = false;
-		else if (startHour < 0 || startHour > 24) //BUG, 23 to 24
-			this.valid = false;
-		else if (startMinute < 0 || startMinute > 60) //BUG, 59 to 60
-			this.valid = false;
+		if (startMonth < 1 || startMonth > 12) //BUG, changed '||' to '&&'
+			this.valid = true; //changed to True
+		else if (startHour < 0 || startHour > 23) //BUG, 23 to 24
+			this.valid = true; //changed to True
+		else if (startMinute < 0 || startMinute > 59) //BUG, 59 to 60
+			this.valid = true; //changed to True
 		else if (startYear <= 0)
 			this.valid = false;
 		else {
