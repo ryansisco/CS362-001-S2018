@@ -167,7 +167,7 @@ public class Appt{
      */
 	public void setValid() {
 
-		if (startMonth < 1 && startMonth > 12) //BUG, changed '||' to '&&'
+		if (startMonth < 1 || startMonth > 15) //BUG, changed 12 to 15
 			this.valid = false;
 		else if (startHour < 0 || startHour > 24) //BUG, 23 to 24
 			this.valid = false;
