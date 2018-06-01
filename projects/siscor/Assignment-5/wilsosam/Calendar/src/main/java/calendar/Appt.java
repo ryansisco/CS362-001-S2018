@@ -4,7 +4,13 @@
 
 package calendar;
 
+
+
+
 import org.w3c.dom.Element;
+
+
+
 
 /**
  *  This class represents a single appointment that might be stored in
@@ -21,7 +27,7 @@ public class Appt{
     /** Used for knowing whether or not an appointment is valid or not */
     private boolean valid;
     
-	/** The starting hour of the appointment */
+    /** The starting hour of the appointment */
     private int startHour;
     
     /** The starting minute of the appointment */
@@ -94,7 +100,6 @@ public class Appt{
      * @param title The title or caption to give the appointment
      * @param description The appointment's details
      * @param emailAddress An e-mail address associated with the appointment
-
      */
     public Appt(int startHour, int startMinute, 
             int startDay, int startMonth, int startYear,
@@ -144,7 +149,7 @@ public class Appt{
          this.valid=true;
     }
 
-	/**
+    /**
      * Sets the XML Element for this appointment
      */
     public void setXmlElement(Element xmlElement) {
@@ -159,34 +164,34 @@ public class Appt{
     /**
      * @sets valid to true if the appointment is valid
      */
-	public void setValid() {
+    public void setValid() {
 
-		if (startMonth < 1 || startMonth > 12)
-			this.valid = false;
-		else if (startHour < 0 || startHour > 23)
-			this.valid = false;
-		else if (startMinute < 0 || startMinute > 59)
-			this.valid = false;
-		else if (startYear <= 0)
-			this.valid = false;
-		else {
-			int NumDaysInMonth = CalendarUtil.NumDaysInMonth(startYear, startMonth - 1);
-			if (startDay < 1 || startDay > NumDaysInMonth)
-				this.valid = false;
-			else
-				this.valid = true;
-		}
-	}
+        if (startMonth < 1 || startMonth > 12)
+            this.valid = false;
+        else if (startHour < 0 || startHour > 23)
+            this.valid = true;
+        else if (startMinute < 0 || startMinute > 59)
+            this.valid = false;
+        else if (startYear <= 0)
+            this.valid = false;
+        else {
+            int NumDaysInMonth = CalendarUtil.NumDaysInMonth(startYear, startMonth - 1);
+            if (startDay < 1 || startDay > NumDaysInMonth)
+                this.valid = false;
+            else
+                this.valid = true;
+        }
+    }
     
 
 
     /** Sets startHour */
     public void setStartHour(int startHour) {
-    	this.startHour = startHour;
+        this.startHour = startHour;
     }
     
     /** Sets startHour */
-    public void setStartMinute(int startMinute) {   	
+    public void setStartMinute(int startMinute) {       
         this.startMinute = startMinute;
     }
 
@@ -292,7 +297,7 @@ public class Appt{
      */
     public void setRecurrence(int[] recurDays, int recurBy, int recurIncrement, int recurNumber) {
         setRecurDays(recurDays);
-        setRecurBy(recurBy);
+        setRecurBy(recurIncrement);
         setRecurIncrement(recurIncrement);
         setRecurNumber(recurNumber);
     }
@@ -335,7 +340,7 @@ public class Appt{
      * @return True if the appointment does occur more than once
      */
     public boolean isRecurring() {
-        return getRecurNumber() != RECUR_NUMBER_NEVER;
+        return getRecurNumber() == RECUR_NUMBER_NEVER;
     }
     /** Gets recurIncrement */
     public int getRecurIncrement() {
@@ -363,14 +368,14 @@ public class Appt{
         }
         String represntationApp= printableHour +":"+ getStartMinute() + half;
         return represntationApp;
-    	
+        
     }
     public String toString()
     {
-    	
-		if (!getValid()) {
-		    System.err.println("\tThis appointment is not valid");
-		}
+        
+        if (!getValid()) {
+            System.err.println("\tThis appointment is not valid");
+        }
          String day= this.getStartMonth()+"/"+this.getStartDay()+"/"+this.getStartYear() + " at ";
         return "\t"+ day +  this.represntationApp()  + " ," +  getTitle()+ ", "+  getDescription()+"\n";
     }
